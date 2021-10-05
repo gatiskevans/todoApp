@@ -1,0 +1,11 @@
+{
+  "name": "gatis/todoapp",
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "nikic/fast-route": "^1.3"
+  }
+}
