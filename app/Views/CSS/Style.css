@@ -1,0 +1,50 @@
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.7rem 3rem;
+    margin: auto;
+}
+
+h2 {
+    border: 1px solid black;
+    width: 22%;
+    padding: 1rem;
+    margin: auto;
+    border-radius: 6px;
+}
+
+div#container {
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.4rem;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+    font-size: 1.3rem;
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 0.3rem 1.6rem;
+}
+a:visited {
+    color: red;
+}
+
+a:hover {
+  color: darkblue;
+}
+
+div#addDelete {
+    border: 1px solid black;
+    width: 22%;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.4rem;
+    margin: auto;
+}
+
+#addTask {
+    font-size: 1.8rem;
+}
