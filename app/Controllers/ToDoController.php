@@ -2,16 +2,24 @@
 
     namespace App\Controllers;
 
-    use App\Models\Database\TasksDatabase;
     use App\Models\Record;
-    use App\Models\ToDoList;
+    use App\Repositories\CsvTasksRepository;
+    use App\Repositories\TasksRepository;
     use Ramsey\Uuid\Uuid;
 
     class ToDoController
     {
+        private TasksRepository $tasksRepository;
+
+        public function __construct()
+        {
+            $this->tasksRepository = new CsvTasksRepository('Storage/CSV/Tasks.csv');
+        }
+
         public function showTasks(): void
         {
-            $database = new TasksDatabase();
+            $tasks = $this->tasksRepository->fetchAllRecords();
+
             require_once 'app/Views/Tasks/show.view.php';
         }
 
@@ -22,23 +30,23 @@
 
         public function addTask(): void
         {
-            $uuid = Uuid::uuid4();
+            $record = new Record(
+                Uuid::uuid4(),
+                $_POST['task']
+            );
 
-            $todoList = new ToDoList('app/CSV/Tasks.csv');
-            $record = new Record($uuid->toString(), $_POST['task'], Record::STATUS_CREATED);
-            $todoList->add([
-                $record->getId(),
-                $record->getTask(),
-                $record->getStatus(),
-            ]);
-            header('Location: \todo');
+            $this->tasksRepository->save($record);
+
+            header('Location: /todo');
         }
 
-        public function deleteTask(): void
+        public function deleteTask(array $vars): void
         {
-            $database = new TasksDatabase();
-            $todoList = new ToDoList('app/CSV/Tasks.csv');
-            $todoList->delete($_POST['delete'], $database->getRecords());
-            header('Location: \todo');
+            $id = $vars['id'] ?? null;
+            if($id == null) header('Location: /');
+
+            $task = $this->tasksRepository->getOne($id);
+            if($task != null) $this->tasksRepository->delete($task);
+            header('Location: /');
         }
     }

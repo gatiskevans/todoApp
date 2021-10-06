@@ -1,4 +1,4 @@
-<?php require_once 'app/Views/Templates/header.php'; ?>
+<?php require_once 'app/Views/Partials/header.php'; ?>
 
 
     <div id="container">
@@ -9,17 +9,21 @@
             <br>
             <table>
 
-                <?php foreach($database->getRecords() as $records): ?>
+                <?php foreach($tasks->getListOfTasks() as $task): ?>
                 <tbody>
-                            <?php echo "<td> $records[1]</td>"; ?>
-                            <?php echo "<td><small><b>$records[2]</b></small></td>"; ?>
+                            <?php echo "<td> {$task->getTask()}</td>"; ?>
+                            <?php echo "<td> <small>({$task->getTimeCreated()})</small></td>"; ?>
+                            <?php echo "<td> {$task->getStatus()}</td>"; ?>
+                <td>
+                    <form action="/todo/<?php echo $task->getId() ?>" method="post">
+                        <button type="submit">X</button>
+                    </form>
+                </td>
                 </tbody>
                <?php endforeach; ?>
 
-                <?php if(count($database->getCsv()) === 0)
+                <?php if(count($tasks->getListOfTasks()) === 0)
                     echo "<td><b>There are no contents in ToDo list yet!</b></td>"; ?>
-
-
 
             </table>
 
@@ -30,16 +34,8 @@
         <div id="addDelete">
             <br>
             <a href="/add">Add Task</a><br>
-            <br>
-
-            <form action="/delete" method="post">
-                <label for="task">Delete Task:</label><br>
-                <input type="text" name="delete" id="task" placeholder="Copy the task in here" /><br><br>
-                <input type="submit" name="addTask" value="Delete Task" />
-            </form>
-
         </div>
 
     </div>
 
-<?php require_once 'app/Views/Templates/footer.php'; ?>
+<?php require_once 'app/Views/Partials/footer.php'; ?>

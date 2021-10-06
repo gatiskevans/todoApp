@@ -7,7 +7,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/todo', 'ToDoController@showTasks');
     $r->addRoute('GET', '/add', 'ToDoController@showAddTask');
     $r->addRoute('POST', '/add', 'ToDoController@addTask');
-    $r->addRoute('POST', '/delete', 'ToDoController@deleteTask');
+    $r->addRoute('POST', '/todo/{id}', 'ToDoController@deleteTask');
 });
 
 // Fetch method and URI from somewhere
@@ -37,6 +37,6 @@ switch ($routeInfo[0]) {
         [$controller, $method] = explode('@', $handler);
         $controller = "App\\Controllers\\" . $controller;
         $controller = new $controller;
-        $controller->$method();
+        $controller->$method($vars);
         break;
 }
