@@ -17,6 +17,8 @@
         public function __construct(string $path)
         {
             $this->path = $path;
+
+            if(!file_exists($path)) Writer::createFromPath($this->path, 'w');
             $this->tasks = Reader::createFromPath($path);
         }
 
