@@ -2,7 +2,7 @@
 
 require 'vendor/autoload.php';
 
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+$dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'ToDoController@showTasks');
     $r->addRoute('GET', '/todo', 'ToDoController@showTasks');
     $r->addRoute('GET', '/add', 'ToDoController@showAddTask');
