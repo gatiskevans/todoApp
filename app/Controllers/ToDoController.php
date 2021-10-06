@@ -11,7 +11,6 @@
         public function showTasks(): void
         {
             $database = new TasksDatabase();
-            $this->database = $database;
             require_once 'app/Views/Tasks/show.view.php';
         }
 
