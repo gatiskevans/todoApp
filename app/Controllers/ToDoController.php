@@ -5,6 +5,7 @@
     use App\Models\Database\TasksDatabase;
     use App\Models\Record;
     use App\Models\ToDoList;
+    use Ramsey\Uuid\Uuid;
 
     class ToDoController
     {
@@ -14,11 +15,22 @@
             require_once 'app/Views/Tasks/show.view.php';
         }
 
+        public function showAddTask(): void
+        {
+            require_once 'app/Views/Tasks/add.view.php';
+        }
+
         public function addTask(): void
         {
+            $uuid = Uuid::uuid4();
+
             $todoList = new ToDoList('app/CSV/Tasks.csv');
-            $record = new Record($_POST['task']);
-            $todoList->add($record->getTask());
+            $record = new Record($uuid->toString(), $_POST['task'], Record::STATUS_CREATED);
+            $todoList->add([
+                $record->getId(),
+                $record->getTask(),
+                $record->getStatus(),
+            ]);
             header('Location: \todo');
         }
 

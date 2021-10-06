@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="app/Views/CSS/Style.css">
-    <title>ToDo List</title>
-</head>
-<body>
+<?php require_once 'app/Views/Templates/header.php'; ?>
+
 
     <div id="container">
 
@@ -15,20 +10,16 @@
             <table>
 
                 <?php foreach($database->getRecords() as $records): ?>
-
                 <tbody>
-
-                    <?php foreach($records as $record): ?>
-
-                            <?php echo "<td><b>Task:</b> $record</td>"; ?>
-
-                    <?php endforeach; ?>
-
+                            <?php echo "<td> $records[1]</td>"; ?>
+                            <?php echo "<td><small><b>$records[2]</b></small></td>"; ?>
+                </tbody>
                <?php endforeach; ?>
 
-                <?php if(count($database->getCsv()) === 0) echo "<td><b>There are no contents in ToDo list yet!</b></td>"; ?>
+                <?php if(count($database->getCsv()) === 0)
+                    echo "<td><b>There are no contents in ToDo list yet!</b></td>"; ?>
 
-                </tbody>
+
 
             </table>
 
@@ -38,7 +29,7 @@
 
         <div id="addDelete">
             <br>
-            <a href="app/Views/Tasks/add.view.php">Add Task</a><br>
+            <a href="/add">Add Task</a><br>
             <br>
 
             <form action="/delete" method="post">
@@ -51,5 +42,4 @@
 
     </div>
 
-</body>
-</html>
+<?php require_once 'app/Views/Templates/footer.php'; ?>

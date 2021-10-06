@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="../CSS/Style.css">
-    <title>ToDo List</title>
-</head>
-<body>
+<?php require_once 'app/Views/Templates/header.php'; ?>
+
     <div id="addDelete">
 
         <form action="/add" method="post"><br>
@@ -17,5 +12,4 @@
         <br><br>
     </div>
 
-</body>
-</html>
+<?php require_once 'app/Views/Templates/footer.php'; ?>

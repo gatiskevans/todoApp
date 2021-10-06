@@ -16,15 +16,15 @@
             $this->path = $path;
         }
 
-        public function add(string $record): void
+        public function add(array $record): void
         {
-            $this->csv->insertOne([$record]);
+            $this->csv->insertOne($record);
         }
 
         public function delete(string $task, \Iterator $records): void
         {
             foreach ($records as $record) {
-                if($record[0] !== $task) $this->tasks[] = $record;
+                if($record[1] !== $task) $this->tasks[] = $record;
             }
             $this->csv = Writer::createFromPath($this->path, 'w');
             $this->csv->insertAll($this->tasks);
