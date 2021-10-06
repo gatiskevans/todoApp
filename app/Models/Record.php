@@ -8,7 +8,7 @@
     {
         private string $task;
         private string $id;
-        private ?string $status;
+        private ?string $status = '';
         private ?string $timeCreated;
         
         public const STATUS_COMPLETED = 'completed';

@@ -4,6 +4,7 @@
 
     use App\Models\Record;
     use App\Repositories\CsvTasksRepository;
+    use App\Repositories\MySQLTasksRepository;
     use App\Repositories\TasksRepository;
     use Ramsey\Uuid\Uuid;
 
@@ -13,7 +14,8 @@
 
         public function __construct()
         {
-            $this->tasksRepository = new CsvTasksRepository('Storage/CSV/Tasks.csv');
+            //$this->tasksRepository = new CsvTasksRepository('Storage/CSV/Tasks.csv');
+            $this->tasksRepository = new MySQLTasksRepository();
         }
 
         public function showTasks(): void
