@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use PDO;
 
-class MySQLConnect
+abstract class MySQLConnect
 {
     private string $host = "localhost";
     private string $user = "root";
