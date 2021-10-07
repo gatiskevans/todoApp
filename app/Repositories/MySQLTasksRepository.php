@@ -12,7 +12,7 @@ class MySQLTasksRepository extends MySQLConnect implements TasksRepository
     {
         $tasksCollection = new TasksCollection();
 
-        $sql = "SELECT * FROM tasks";
+        $sql = "SELECT * FROM tasks ORDER BY created DESC";
         $statement = $this->connect()->query($sql);
 
         foreach ($statement->fetchAll() as $row) {
