@@ -11,7 +11,7 @@ class MySQLConnect
     private string $password = "root";
     private string $database = "todotasks";
 
-    public function connect(): PDO
+    protected function connect(): PDO
     {
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->database;
         $pdo = new PDO($dsn, $this->user, $this->password);
